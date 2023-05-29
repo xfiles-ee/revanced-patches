@@ -72,7 +72,7 @@ class CustomBrandingPatch : ResourcePatch {
         private var appName: String? by option(
             PatchOption.StringOption(
                 key = "appName",
-                default = "YouTube ReVanced",
+                default = "YouTube Sleep",
                 title = "Application Name",
                 description = "The name of the application it will show on your home screen.",
                 required = true
