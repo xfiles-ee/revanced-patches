@@ -56,7 +56,9 @@ jobs:
           if [ -z "$TAG" ]; then TAG=0; fi
           echo "NEXT_VER_CODE=$((TAG + 1))" >> $GITHUB_OUTPUT
       - name: Build modules/APKs
-        run: ./gradlew build
+        run: |
+          ./gradlew build
+          cp ./patches.json ./build/libs/
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: $GITHUB_REPOSITORY
@@ -66,7 +68,6 @@ jobs:
         with:
           body: "Sample"
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          run: cp ./patches.json ./build/libs/
           file: ./build/libs/*
           release_name: ReVanced
           tag: ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
