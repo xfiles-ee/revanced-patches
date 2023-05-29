@@ -66,6 +66,7 @@ jobs:
         with:
           body: "Sample"
           repo_token: ${{ secrets.GITHUB_TOKEN }}
+          run: cp ./patches.json ./build/libs/
           file: ./build/libs/*
           release_name: ReVanced
           tag: ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
