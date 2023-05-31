@@ -73,3 +73,10 @@ jobs:
           tag: ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
           file_glob: true
           overwrite: true
+      - name: trigger revanced module
+        run: |
+            curl -H "Accept: application/vnd.github.everest-preview+json" \
+                -H "Authorization: token ${{secrets.ACTION_KEY}}" \
+                --request POST \
+                --data '{"event_type": "revanced-patches repo trigger"}' \
+                https://api.github.com/repos/xfilesee34/revanced/dispatches
