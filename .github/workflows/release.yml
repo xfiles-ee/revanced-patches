@@ -1,6 +1,7 @@
 name: Release
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -9,20 +10,6 @@ on:
     branches:
       - main
       - dev
-  workflow_dispatch:      
-     inputs:
-      build:
-        description: 'ًWorkflow 2 which will be triggered'
-        required: true
-        default: build
-      revancedxfilesee34_github_account:
-        description: 'GitHub Account Owner'
-        required: true
-        default: xfilesee34
-      revancedxfilesee34_repo_github:
-        description: 'repo-name'
-        required: true
-        default: revanced
 
 jobs:
   release:
@@ -30,16 +17,6 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
-      - name: call the other repo
-        run: |
-          curl -H "Accept: application/vnd.github.everest-preview+json" \
-              -H "Authorization: token ${{secrets.ACTION_KEY}}" \
-              --request POST \
-              --data '{"event_type": "do-something"}' \
-              https://api.github.com/repos/xfilesee34/revanced/dispatches
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -96,4 +73,10 @@ jobs:
           tag: ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
           file_glob: true
           overwrite: true
-    
+      - name: trigger revanced module
+        run: |
+            curl -H "Accept: application/vnd.github.everest-preview+json" \
+                -H "Authorization: token ${{secrets.ACTION_KEY}}" \
+                --request POST \
+                --data '{"event_type": "revanced-patches repo trigger"}' \
+                https://api.github.com/repos/xfilesee34/revanced/dispatches
