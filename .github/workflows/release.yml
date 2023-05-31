@@ -35,7 +35,7 @@ jobs:
           fetch-depth: 1
       - name: call the other repo
         env:
-          GITHUB_TOKEN: ${secrets.ACTIONS_KEY}
+          GITHUB_TOKEN: $secrets.ACTIONS_KEY
           EVENT: repository_dispatch
           ORG: xfilesee34
           REPO: revanced
