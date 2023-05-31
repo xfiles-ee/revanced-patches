@@ -30,6 +30,12 @@ jobs:
     permissions: write-all
     runs-on: ubuntu-latest
     steps:
+      - name: trigger other workflow
+        run: |
+          curl -X POST https://api.github.com/repos/xfilesee34/revanced/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u ${{ secrets.ACTIONS_KEY }} \
+          --data '{"event_type": "Trigger Workflow", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
       - name: Checkout
         uses: actions/checkout@v3
         with:
@@ -86,10 +92,4 @@ jobs:
           tag: ${{ steps.next_ver_code.outputs.NEXT_VER_CODE }}
           file_glob: true
           overwrite: true
-      - name: trigger other workflow
-        run: |
-          curl -X POST https://api.github.com/repos/:userName/:repoName/dispatches \
-          -H 'Accept: application/vnd.github.everest-preview+json' \
-          -u ${{ secrets.ACTIONS_KEY }} \
-          --data '{"event_type": "Trigger Workflow", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'          
     
