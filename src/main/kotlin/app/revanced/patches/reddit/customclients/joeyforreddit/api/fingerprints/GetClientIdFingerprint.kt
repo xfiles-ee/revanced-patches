@@ -1,9 +1,9 @@
 package app.revanced.patches.reddit.customclients.joeyforreddit.api.fingerprints
 
 import app.revanced.patcher.extensions.or
-import org.jf.dexlib2.AccessFlags
-import org.jf.dexlib2.Opcode
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
+import com.android.tools.smali.dexlib2.AccessFlags
+import com.android.tools.smali.dexlib2.Opcode
+import app.revanced.patcher.fingerprint.MethodFingerprint
 
 object GetClientIdFingerprint : MethodFingerprint(
     returnType = "L",

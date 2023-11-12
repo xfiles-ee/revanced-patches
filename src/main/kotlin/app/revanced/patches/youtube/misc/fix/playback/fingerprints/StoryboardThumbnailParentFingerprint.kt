@@ -1,8 +1,8 @@
 package app.revanced.patches.youtube.misc.fix.playback.fingerprints
 
 import app.revanced.patcher.extensions.or
-import app.revanced.patcher.fingerprint.method.impl.MethodFingerprint
-import org.jf.dexlib2.AccessFlags
+import app.revanced.patcher.fingerprint.MethodFingerprint
+import com.android.tools.smali.dexlib2.AccessFlags
 
 /**
  * Here lies code that creates the seekbar thumbnails.

@@ -4,9 +4,10 @@ import app.revanced.patches.shared.settings.preference.BasePreference
 import app.revanced.patches.shared.settings.preference.impl.PreferenceCategory
 import app.revanced.patches.shared.settings.preference.impl.PreferenceScreen
 import app.revanced.patches.shared.settings.preference.impl.StringResource
+import app.revanced.patches.shared.settings.preference.removePunctuation
 import java.io.Closeable
 
-internal abstract class AbstractPreferenceScreen(
+abstract class AbstractPreferenceScreen(
     private val root: MutableList<Screen> = mutableListOf()
 ) : Closeable {
 
@@ -35,8 +36,8 @@ internal abstract class AbstractPreferenceScreen(
             return PreferenceScreen(
                 key,
                 StringResource("${key}_title", title),
-                 preferences.sortedBy { it.title.value.lowercase() } +
-                         categories.sortedBy { it.title.lowercase() }.map { it.transform() },
+                 preferences.sortedBy { it.title.value.removePunctuation().lowercase() } +
+                         categories.sortedBy { it.title.removePunctuation().lowercase() }.map { it.transform() },
                 summary?.let { summary ->
                     StringResource("${key}_summary", summary)
                 }
@@ -63,7 +64,7 @@ internal abstract class AbstractPreferenceScreen(
                 return PreferenceCategory(
                     key,
                     StringResource("${key}_title", title),
-                    preferences.sortedBy { it.title.value.lowercase() }
+                    preferences.sortedBy { it.title.value.removePunctuation().lowercase() }
                 )
             }
 
