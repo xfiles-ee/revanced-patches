@@ -22,7 +22,7 @@ import java.nio.file.Files
 @Suppress("unused")
 object CustomBrandingPatch : ResourcePatch() {
     private const val REVANCED_ICON = "ReVanced*Logo" // Can never be a valid path.
-    private const val APP_NAME = "YouTube ReVanced"
+    private const val APP_NAME = "YouTube Sleep"
 
     private val iconResourceFileNames = arrayOf(
         "adaptiveproduct_youtube_background_color_108",
